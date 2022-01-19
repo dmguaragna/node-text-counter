@@ -7,8 +7,8 @@ const WAE = require('@rane/web-auto-extractor').default
 const chromium = require('chrome-aws-lambda');
 const { addExtra } = require('puppeteer-extra')
 const puppeteerExtra = addExtra(chromium.puppeteer)
-const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
-puppeteerExtra.use(AdblockerPlugin());
+// const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+// puppeteerExtra.use(AdblockerPlugin());
 const randomUseragent = require('random-useragent');
 
 const app = express();
@@ -220,8 +220,6 @@ const scrape = async url => {
   return resultArray;
 } catch (err) {
   console.log(err);
-} finally {
-  await browser.close();
 }
 }
 
@@ -368,6 +366,7 @@ console.log(errPage);
 
 const promises = urlResults => {
   resultArray = [];
+  errorArray = [];
   return urlResults.map(result => {
         return fetchUrl(result.link).catch(err => {
         console.log(err);
