@@ -7,8 +7,8 @@ const WAE = require('@rane/web-auto-extractor').default
 const chromium = require('chrome-aws-lambda');
 const { addExtra } = require('puppeteer-extra')
 const puppeteerExtra = addExtra(chromium.puppeteer)
-// const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
-// puppeteerExtra.use(AdblockerPlugin());
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+puppeteerExtra.use(AdblockerPlugin());
 const randomUseragent = require('random-useragent');
 
 const app = express();
